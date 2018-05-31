@@ -1,0 +1,25 @@
+# _*_ coding:utf-8 _*_
+
+import re
+import urllib
+
+def get_html_content(url):
+    """获取网页的内容"""
+    html = urllib.urlopen(url)
+    content = html.read()
+    html.close()
+    return content
+
+
+
+def get_image(info):
+    '''获取图片'''
+
+    regex = r'http:.+\.png'
+    pat = re.compile(regex)
+    image_code = re.findall(pat,info)
+    for image_url in image_code:
+        print image_url
+info = get_html_content('http://www.baidu.com')
+
+get_image(info)
